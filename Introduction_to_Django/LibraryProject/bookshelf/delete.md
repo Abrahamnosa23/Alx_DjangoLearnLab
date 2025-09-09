@@ -1,5 +1,7 @@
 
-- `delete.md`
+---
+
+**📄 delete.md**
 ```markdown
 ```python
 from bookshelf.models import Book
