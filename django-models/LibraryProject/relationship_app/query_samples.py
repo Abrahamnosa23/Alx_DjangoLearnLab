@@ -1,18 +1,23 @@
-from relationship_app.models import Author, Book, Library, Librarian
+# LibraryProject/relationship_app/query_samples.py
+from .models import Author, Book, Library
 
-# Query all books by a specific author
 def books_by_author(author_name):
-    author = Author.objects.get(name=author_name)
+    try:
+        author = Author.objects.get(name=author_name)
+    except Author.DoesNotExist:
+        return []
     return Book.objects.filter(author=author)
 
-# List all books in a library
 def books_in_library(library_name):
-    library = Library.objects.get(name=library_name)
+    try:
+        library = Library.objects.get(name=library_name)
+    except Library.DoesNotExist:
+        return []
     return library.books.all()
 
-# Retrieve the librarian for a library
 def librarian_for_library(library_name):
-    library = Library.objects.get(name=library_name)
-    librarian = Librarian.objects.get(library=library)
-    return librarian
-
+    try:
+        library = Library.objects.get(name=library_name)
+    except Library.DoesNotExist:
+        return None
+    return getattr(library, 'librarian', None)
