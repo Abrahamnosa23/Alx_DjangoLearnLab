@@ -1,3 +1,4 @@
+<!-- relationship_app/templates/relationship_app/list_books.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +9,18 @@
     <h1>Books Available:</h1>
     <ul>
         {% for book in books %}
-        <li>{{ book.title }} by {{ book.author.name }}</li>
+            <li>{{ book.title }} by {{ book.author.name }}</li>
         {% empty %}
-        <li>No books available.</li>
+            <li>No books available.</li>
         {% endfor %}
     </ul>
+
+    <p>
+        <a href="{% url 'login' %}">Login</a> |
+        <a href="{% url 'register' %}">Register</a> |
+        <a href="{% url 'admin_view' %}">Admin Area</a> |
+        <a href="{% url 'librarian_view' %}">Librarian Area</a> |
+        <a href="{% url 'member_view' %}">Member Area</a>
+    </p>
 </body>
 </html>
